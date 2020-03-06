@@ -44,11 +44,14 @@ def read_file(self,old,new):
 # To download all images / videos  
 Look under Files to Download folder  
 
-under img_urls in the csv if a post has multiple images, need to save them as    
-| 1 2 | 4 | 
-|-----|---|
-| 3   |   |  
-with a space between img_url / video_url  
+under img_urls in the csv if a post has multiple images, need to save them as with a space between img_url / video_url      
+| img_urls | video_urls    |   |
+|----------|:-------------:|--:|
+| 1 2      |  3 4          |   |  
+
+  
+[video_name1 video_name2]
+ 
 
 with a space in the middle  
 
