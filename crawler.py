@@ -69,8 +69,9 @@ class Crawling():
         # ----------------------
         # Remember to set num = (to a specific value), else it will crawl ALL the posts
         # ----------------------
-        pbar = tqdm(total=num)
         num = 1000
+        pbar = tqdm(total=num)
+        
         def start_fetching(pre_post_num, wait_time):
             ele_posts = bot.find_element_by_css(".v1Nh3 a")
             i=-1
@@ -119,14 +120,15 @@ class Crawling():
         print(posts)
         pbar.close()
         print("Done. Fetched %s posts." % (min(len(posts), num)))
-        with open('straits_times_1000_.txt', 'w') as f:
+        with open('guardian.txt', 'w') as f:
             for item in posts:
                 f.write("%s\n" % item)
         return posts[:num]
 
     # Call this function to re-crawl the specific data
+    
     def read_file(self):
-        with open("straits_times_1000.txt", "r") as f:
+        with open("washington_post_video.txt", "r") as f:
             
             print("HEre")
             bot = self.bot
@@ -137,7 +139,7 @@ class Crawling():
                 #post = f.readline()
                 res = ast.literal_eval(post) 
                 print("--------------------------------- post number " + str(i))
-                if (res.get("comments") == None or res.get("img_urls") == []):
+                if (res.get("comments") == None):#  or res.get("img_urls") == []
                     #print(res["key"] + " no comments" )
                     new_post = fetch_details_key(bot,res["key"])
                     posts.append(new_post)
@@ -148,7 +150,7 @@ class Crawling():
              #Write everything (COMPLETE) crawl back
             print("WRITING")
             print(posts)
-            new_f = open("new__straits_times_VIDEO.txt", "w")
+            new_f = open("washington_post_1000.txt", "w")
             new_f.writelines("%s\n" % line for line in posts)
             # for item in posts:
             #     print("item")
@@ -237,12 +239,13 @@ class Crawling():
             posts.sort(key=lambda post: post["datetime"], reverse=True)
         return posts
 
+
 obj = Crawling()
 
 # Crawl (num) data
-#print(obj.get_user_posts("straits_times")) #Enter The Username u want to crawl
-
-# Re-Crawl those links in the file that are incomplete
+#print(obj.get_user_posts("washingtonpost")) #Enter The Username u want to crawl
+#print(obj.get_user_posts("guardian"))
+#Re-Crawl those links in the file that are incomplete
 # 
 obj.read_file()
 

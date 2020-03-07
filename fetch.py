@@ -8,6 +8,7 @@ def fetch_videos(bot,dict_post):
         ele_vid = bot.find_element_by_css("._97aPb video")
         if isinstance(ele_vid, list):
             for ele_img in ele_vid:
+                print(ele_img.get_attribute("src"))
                 video_url.add(ele_img.get_attribute("src"))
             else:
                 break
