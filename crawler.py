@@ -120,16 +120,14 @@ class Crawling():
         print(posts)
         pbar.close()
         print("Done. Fetched %s posts." % (min(len(posts), num)))
-        with open('guardian.txt', 'w') as f:
+        with open('cnbc.txt', 'w') as f:
             for item in posts:
                 f.write("%s\n" % item)
         return posts[:num]
 
     # Call this function to re-crawl the specific data
-    
     def read_file(self):
-        with open("washington_post_video.txt", "r") as f:
-            
+        with open("cnbc.txt", "r") as f:
             print("HEre")
             bot = self.bot
             count = 0
@@ -150,7 +148,7 @@ class Crawling():
              #Write everything (COMPLETE) crawl back
             print("WRITING")
             print(posts)
-            new_f = open("washington_post_1000.txt", "w")
+            new_f = open("cnbc_comments.txt", "w")
             new_f.writelines("%s\n" % line for line in posts)
             # for item in posts:
             #     print("item")
@@ -159,6 +157,32 @@ class Crawling():
             print("WRITING end")
             new_f.close()
     
+    # To re-crawl those posts that contain video_urls and image_urls
+    def get_video_file(self):
+        with open("cnbc.txt", "r") as f:
+            print("Here")
+            bot = self.bot
+            count = 0
+            i = 1
+            posts = []
+            for post in f:
+                #post = f.readline()
+                res = ast.literal_eval(post) 
+                print("--------------------------------- post number " + str(i))
+                if (res.get("video_urls") != None or res.get("img_urls") != None ):#  or res.get("img_urls") == []
+                    #print(res["key"] + " no comments" )
+                    fetch_image_videos(bot,res,res["key"])
+                    posts.append(res)
+                else:
+                    posts.append(post)
+             #Write everything (COMPLETE) crawl back
+            print("WRITING")
+            print(posts)
+            new_f = open("cnbc_comments.txt", "w")
+            new_f.writelines("%s\n" % line for line in posts)
+            print("WRITING end")
+            new_f.close()
+
     # Function not used
     def _get_posts_full(self, num, url):
         @retry()
@@ -244,7 +268,7 @@ obj = Crawling()
 
 # Crawl (num) data
 #print(obj.get_user_posts("washingtonpost")) #Enter The Username u want to crawl
-#print(obj.get_user_posts("guardian"))
+#print(obj.get_user_posts("cnbc"))
 #Re-Crawl those links in the file that are incomplete
 # 
 obj.read_file()

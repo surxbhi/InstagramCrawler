@@ -50,16 +50,16 @@ def the_main_freaking_function(csv_file):
     #for filename in os.listdir("straits_times_images"):
     files = csv_file +".csv"
     df = pd.read_csv(files)
-    save_img_url = df["img_urls"].tolist()
-    print(save_img_url)
-    print(len(save_img_url))
-    print("hmm")
-    print("FLATTEN image LIST")
-    flat_image_list = flatten_list(save_img_url)
-    print(len(flat_image_list))
-    all_image_names = parse_image_link_names(flat_image_list)
-    print("All image names")
-    print(all_image_names)
+    # save_img_url = df["img_urls"].tolist()
+    # print(save_img_url)
+    # print(len(save_img_url))
+    # print("hmm")
+    # print("FLATTEN image LIST")
+    # flat_image_list = flatten_list(save_img_url)
+    # print(len(flat_image_list))
+    # all_image_names = parse_image_link_names(flat_image_list)
+    # print("All image names")
+    # print(all_image_names)
 
     #Videos
     save_vid_url = df["video_urls"].tolist()

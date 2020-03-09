@@ -1,6 +1,21 @@
 from time import sleep
 import re
 
+def fetch_image_videos(bot,dict_post,key):
+    bot.open_new_tab(key)
+    sleep(3)
+    img_urls = set()
+    #Fetch Images
+    while True:
+        ele_imgs = bot.find_element_by_css("._97aPb img")
+        if isinstance(ele_imgs, list):
+            for ele_img in ele_imgs:
+                img_urls.add(ele_img.get_attribute("src"))
+            else:
+                break
+    dict_post["img_urls"] = list(img_urls)
+    fetch_videos(bot,dict_post)
+
 def fetch_videos(bot,dict_post):
     video_url = set()
     #Fetch Video
