@@ -90,3 +90,6 @@ def _get_posts():
        with open(<old file name>, "r") as f:  
            new_f = open(<new file name>, "w")  
 ```
+
+## References:   
+https://github.com/huaying/instagram-crawler

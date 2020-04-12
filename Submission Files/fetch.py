@@ -1,6 +1,15 @@
 from time import sleep
 import re
 
+#******************************************************************
+# CZ4034 2019/2020 
+# Instagram Crawler 
+# 
+# Author: Surabhi Malani
+# 
+# References: https://github.com/huaying/instagram-crawler
+#******************************************************************
+
 def fetch_image_videos(bot,dict_post,key):
     bot.open_new_tab(key)
     sleep(3)
