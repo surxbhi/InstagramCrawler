@@ -1,7 +1,9 @@
 # Purpose of this code
-
-![Instagram Layout](image1.png)   
+## Instagram Layout
+![Instagram Layout](image1.png)
+## Legend   
 ![Legend](image3.png)   
+## Instagram Likes and Views
 ![Instagram Likes and Views](image2.png)    
 
 # Running the Code 
