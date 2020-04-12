@@ -3,13 +3,13 @@
 
 # Running the Code 
 ```
-# pip install selenium  
-# pip install tqdm  
-# pip install webdriver_manager    
+pip install selenium  
+pip install tqdm  
+pip install webdriver_manager    
 ```
 Run the code by typing this in terminal  
 ```
-# python3 crawler.py  
+python3 crawler.py  
 ```
 This code has been tested and verified for working on MacOS devices. Some unknown errors in Windows appear which have not been resolved for the purposes of this project  
   
@@ -48,32 +48,40 @@ This code has been tested and verified for working on MacOS devices. Some unknow
 2. Re-crawl those posts that do not contain comments: read_file()  
 3. Re-crawl those posts that do not contain video_urls and image_urls: get_video_file()  
 
-## 1) Extract (num) posts from user profile: get_user_posts() 
+## 1) Extract (num) posts from user profile 
 Things to take note
 1. To crawl a desired user profile, enter this line of code in the crawler.py  
 ```
-# obj = Crawling()  
-# print(obj.get_user_posts("<user profile>")  )
+obj = Crawling()  
+print(obj.get_user_posts("<user profile>")  )
 ```
 2. Set num = (to a specific value), else it will crawl ALL the posts  
 ```
-# def get_posts():
-#    ...
-#    num = <a specific number> # desired number is 1000
+def _get_posts():
+    ...
+    num = <a specific number> # desired number is 1000
 ```
 3. Change file name to save scraped data 
 ```
-# def get_posts():
-#   ...
-#   with open('<file name>.txt', 'w') as f:  
-#       for item in posts:  
-#           f.write("%s\n" % item)  
+def _get_posts():
+   ...
+   with open('<file name>.txt', 'w') as f:  
+       for item in posts:  
+           f.write("%s\n" % item)  
 ``` 
-## 2) Re-crawl those posts that do not contain comments: read_file() 
+## 2) Re-crawl those posts that do not contain comments 
 ```
-# obj.read_file():  
-#   ...    
-#   def read_file(self,old,new):  
-#       with open(<old file name>, "r") as f:  
-#           new_f = open(<new file name>, "w")  
+ def read_file():  
+   ...    
+   def read_file(self,old,new):  
+       with open(<old file name>, "r") as f:  
+           new_f = open(<new file name>, "w")  
+```
+## 3) Re-crawl those posts that do not contain video_urls and image_urls
+```
+ def get_video_file():  
+   ...    
+   def read_file(self,old,new):  
+       with open(<old file name>, "r") as f:  
+           new_f = open(<new file name>, "w")  
 ```
