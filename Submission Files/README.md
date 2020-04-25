@@ -77,18 +77,16 @@ def _get_posts():
 ## 2) Re-crawl those posts that do not contain comments 
 ```
  def read_file():  
-   ...    
-   def read_file(self,old,new):  
-       with open(<old file name>, "r") as f:  
-           new_f = open(<new file name>, "w")  
+   ...     
+    with open(<old file name>, "r") as f:  
+        new_f = open(<new file name>, "w")  
 ```
 ## 3) Re-crawl those posts that do not contain video_urls and image_urls
 ```
  def get_video_file():  
    ...    
-   def read_file(self,old,new):  
-       with open(<old file name>, "r") as f:  
-           new_f = open(<new file name>, "w")  
+    with open(<old file name>, "r") as f:  
+        new_f = open(<new file name>, "w")  
 ```
 
 ## References:   

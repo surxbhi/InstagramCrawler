@@ -76,7 +76,7 @@ def the_main_freaking_function(csv_file):
     #Write to file
     print("WRITING")
     new_f = open("straits_times_img_video_name.txt", "w")
-    new_f.writelines("%s\n" % line for line in all_image_names)
+    #new_f.writelines("%s\n" % line for line in all_image_names)
     new_f.writelines("%s\n" % line for line in all_vid_names)
     print("WRITING end")
     new_f.close()

@@ -5,6 +5,7 @@ def fetch_image_videos(bot,dict_post,key):
     bot.open_new_tab(key)
     sleep(3)
     img_urls = set()
+
     #Fetch Images
     while True:
         ele_imgs = bot.find_element_by_css("._97aPb img")
@@ -14,11 +15,14 @@ def fetch_image_videos(bot,dict_post,key):
             else:
                 break
     dict_post["img_urls"] = list(img_urls)
+
+    #Fetch Videos
     fetch_videos(bot,dict_post)
 
 def fetch_videos(bot,dict_post):
-    video_url = set()
+
     #Fetch Video
+    video_url = set()
     while True:
         ele_vid = bot.find_element_by_css("._97aPb video")
         if isinstance(ele_vid, list):
@@ -35,8 +39,9 @@ def fetch_details_key(bot,key):
         dict_post = { "key": key }
         bot.open_new_tab(key)
         sleep(3)
-        img_urls = set()
+
         #Fetch Images
+        img_urls = set()
         while True:
             ele_imgs = bot.find_element_by_css("._97aPb img")
             if isinstance(ele_imgs, list):
@@ -48,25 +53,25 @@ def fetch_details_key(bot,key):
 
         #Fetch videos
         fetch_videos(bot,dict_post)
-        #Location
+
+        #Fetch Location
         loca = bot.find_element_by_css(".JF9hh a")
         location = bot.find_element_by_css(".O4GlU",loca)
         if location == None:
             dict_post["location"] = ""
         for k in location:
-            #print(k.text)
             dict_post["location"] = k.text
 
-        #DateTime
+        #Fetch DateTime
         ele_datetime = bot.find_element_by_css(".eo2As .c-Yi7 ._1o9PC")
         for k in ele_datetime:
             datetime = k.get_attribute("datetime")
             dict_post["datetime"] = datetime
-            #print(datetime)
 
         #Fetch likes and views
         fetch_likes_plays(bot,dict_post)
         sleep(10)
+
         #Fetch Caption + Comments
         fetch_caption(bot, dict_post)
         sleep(10)
@@ -75,11 +80,11 @@ def fetch_details_key(bot,key):
         return dict_post
 
 def fetch_details(bot, dict_post):
-
         bot.open_new_tab(dict_post["key"])
         sleep(3)
-        img_urls = set()
+
         #Fetch Images
+        img_urls = set()
         while True:
             ele_imgs = bot.find_element_by_css("._97aPb img")
             if isinstance(ele_imgs, list):
@@ -88,17 +93,19 @@ def fetch_details(bot, dict_post):
                 else:
                     break
         dict_post["img_urls"] = list(img_urls)
+
+        #Fetch Videos
         fetch_videos(bot,dict_post)
-        #Location
+
+        #Fetch Location
         loca = bot.find_element_by_css(".JF9hh a")
         location = bot.find_element_by_css(".O4GlU",loca)
         if location == None:
             dict_post["location"] = ""
         for k in location:
-            #print(k.text)
             dict_post["location"] = k.text
 
-        #DateTime
+        #Fetch DateTime
         ele_datetime = bot.find_element_by_css(".eo2As .c-Yi7 ._1o9PC")
         for k in ele_datetime:
             datetime = k.get_attribute("datetime")
@@ -108,6 +115,7 @@ def fetch_details(bot, dict_post):
         #Fetch likes and views
         fetch_likes_plays(bot,dict_post)
         sleep(10)
+
         #Fetch Caption + Comments
         fetch_caption(bot, dict_post)
         sleep(10)
@@ -138,10 +146,10 @@ def fetch_caption(bot, dict_post):
             print(comment)
             print("__")
             comment_list.append(comment)
-            #else
     print("im here")
     for i in range(len(comment_list)):
         comment_obj = {"author": author_list[i], "comment": comment_list[i]}
+
         #fetch mention and hashtags:
         fetch_mentions(comment_list[i], comment_obj)
         fetch_hashtags(comment_list[i], comment_obj)
@@ -151,24 +159,25 @@ def fetch_caption(bot, dict_post):
         dict_post["comments"] = comments
         print(comments)
 
-def fetch_mentions(raw_test, dict_obj):
-    mentions = get_parsed_mentions(raw_test)
+def fetch_mentions(rawText, dict_obj):
+    mentions = get_parsed_mentions(rawText)
     if mentions:
         dict_obj["mentions"] = mentions
 
-def fetch_hashtags(raw_test, dict_obj):
-    hashtags = get_parsed_hashtags(raw_test)
+def fetch_hashtags(rawText, dict_obj):
+    hashtags = get_parsed_hashtags(rawText)
     if hashtags:
         dict_obj["hashtags"] = hashtags
 
-def get_parsed_mentions(raw_text):
-    regex = re.compile(r"@([\w\.]+)")
-    regex.findall(raw_text)
-    return regex.findall(raw_text)
-def get_parsed_hashtags(raw_text):
-    regex = re.compile(r"#(\w+)")
-    regex.findall(raw_text)
-    return regex.findall(raw_text)
+def get_parsed_mentions(rawText):
+    reg = re.compile(r"@([\w\.]+)")
+    reg.findall(rawText)
+    return reg.findall(rawText)
+
+def get_parsed_hashtags(rawText):
+    reg = re.compile(r"#(\w+)")
+    reg.findall(rawText)
+    return reg.findall(rawText)
 
 def fetch_likes_plays(bot, dict_post):
     likes = None
