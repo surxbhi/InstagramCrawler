@@ -88,6 +88,13 @@ def _get_posts():
     with open(<old file name>, "r") as f:  
         new_f = open(<new file name>, "w")  
 ```
+# Enter instagram account username and password
+```
+ def __init__(self, has_screen=False):
+        super(Crawling, self).__init__()
+        # Please enter username and password here
+        self.bot = InstagramBot('<username>', '<password>')  
+```
 
 ## References:   
 https://github.com/huaying/instagram-crawler
